@@ -1,3 +1,8 @@
+<div class="row">
+  <div class="col-sm-12">
+  <div class="col-sm-offset-2 col-sm-8">  
+  <div class="col-lg-offset-3 col-sm-6">  
+
 <%= form_for(task) do |f| %>
 
 <% if task.errors.any? %>
@@ -10,14 +15,26 @@
     </div>
   <% end %>
 
+  <div class="form-group">
+
 <%= f.label :status,'ステータス' %>
 
-<%= f.text_field :status %>
+<%= f.text_field :status,class:'form-control' %>
+
+  </div>
+  <div class="form-grop">
 
 <%= f.label :content,'タスク' %>
 
-<%= f.text_field :content %>
+<%= f.text_field :content,class:'form-control' %>
+
+  </div>
 
 <%= f.submit '投稿'%>
 
 <% end %>
+
+  </div>
+  </div>
+  </div>
+</div>  
