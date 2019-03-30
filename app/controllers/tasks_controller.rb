@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :require_user_logged_in
   before_action :set_task,only:[:show,:edit,:update,:destroy]
   
   def index
@@ -13,12 +14,12 @@ class TasksController < ApplicationController
   end
   
   def create
-    @task = Task.new(task_params)
-    
+    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success] = 'タスクが正常に投稿されました'
       redirect_to @task
     else
+      @task = current_user.tasks.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'タスクが投稿されませんでした'
       render :new
     end
